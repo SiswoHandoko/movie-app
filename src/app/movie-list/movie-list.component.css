@@ -1,0 +1,13 @@
+.card__rate {
+  font-size: 14px;
+}
+
+.status-purchased {
+  background: #f8575eb0;
+  top: 5px;
+  left: 15px;
+  position: absolute;
+  font-weight: 500;
+  padding: 2px;
+  color: #fff;
+}

@@ -1,0 +1,19 @@
+<div class="row">
+  <!-- section title -->
+  <div class="col-12">
+    <h2 class="section__title">INDONESIA MOVIES LIST</h2>
+  </div>
+  <!-- end section title -->
+  <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let movie of asyncMovies | async | paginate: { id: 'server', itemsPerPage: 20, currentPage: p, totalItems: total }">
+    <app-movie-list [movie]="movie" [genre]="genres" type="movie"></app-movie-list>
+  </div>
+
+  <!-- section btn -->
+  <div class="col-12">
+    <div class="has-text-centered">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls class="custom-paginate" (pageChange)="getPage($event)" id="server"></pagination-controls>
+    </div>
+  </div>
+  <!-- end section btn -->
+</div>

@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card__cover">
+    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie?.poster_path ? movie?.poster_path: movie?.backdrop_path}}" alt="">
+    <span *ngIf="checkOwnedMovies(movie.id)" class="status-purchased">Purchased</span>
+    <a routerLink="/{{movie.id+'-'+convertTitle(movie.original_title)}}" class="card__play">
+      <i class="icon ion-ios-play"></i>
+    </a>
+  </div>
+  <div class="card__content">
+    <h3 class="card__title"><a href="#">{{movie?.title}}</a></h3>
+    <span class="card__category">
+      <a *ngFor="let genre of movie.genre_ids; let i = index;">{{findObjectByKey(genre)}}</a>
+    </span>
+    <span class="card__rate"><i class="icon ion-ios-star"></i> Rating: {{movie?.vote_average}}</span>
+    <span class="card__rate"><i class="icon ion-ios-pricetag"></i> Price: {{convertPrice(movie?.vote_average)}}</span>
+  </div>
+</div>

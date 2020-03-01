@@ -1,0 +1,105 @@
+<!-- details content -->
+<div class="mt20">
+  <div class="row">
+    <!-- title -->
+    <div class="col-12">
+      <h1 class="details__title">{{detail?.title}}</h1>
+    </div>
+    <!-- end title -->
+
+    <!-- content -->
+    <div class="col-12 col-xl-12">
+      <div class="card card--details">
+        <div class="row">
+          <!-- card cover -->
+          <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-4">
+            <div class="card__cover">
+              <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{detail?.poster_path ? detail?.poster_path: detail?.backdrop_path}}" alt="">
+            </div>
+          </div>
+          <!-- end card cover -->
+
+          <!-- card content -->
+          <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-8">
+            <div class="card__content">
+              <div class="card__wrap">
+                <span class="card__rate"><i class="ion-ios-pricetag"></i> Price {{convertIdr(convertPrice(detail?.vote_average))}}</span>
+                <ul class="card__list">
+                  <li>
+                    <button *ngIf= "!ownedStatus && checkInsufficientBalance(convertPrice(detail?.vote_average))" class="buy-button" (click)="buyThisMovie(detail.id,convertPrice(detail?.vote_average))">BUY THIS MOVIE </button>
+                    <button *ngIf= "ownedStatus" class="buy-button" >ALREADY PURCHASED </button>
+                    <button *ngIf= "!ownedStatus && !checkInsufficientBalance(convertPrice(detail?.vote_average))" class="buy-button" >INSUFFICIENT BALANCE </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card__wrap">
+                <span class="card__rate"><i class="icon ion-ios-star"></i> Rating {{detail?.vote_average}}</span>
+              </div>
+
+              <ul class="card__meta">
+                <li><span>Genre:</span>
+                  <a *ngFor="let genre of detail?.genres; let i = index;">{{genre?.name}}</a>
+                </li>
+                <li><span>Release Date:</span> {{detail?.release_date}}</li>
+                <li><span>Running time:</span> {{detail?.runtime}} min</li>
+                <li><span>Language:</span> <a>{{detail?.original_language}}</a> </li>
+              </ul>
+
+              <div class="card__description card__description--details">
+                {{detail?.overview}}
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="cast">Caster and Star:</span>
+                </div>
+                <div class="col-sm-4" *ngFor="let cast of casts | slice:0:6; let i = index;">
+                  <div class="comments__autor" >
+                    <img class="comments__avatar" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{cast.profile_path}}" alt="">
+                    <span class="comments__name">{{cast.name}}</span>
+                    <span class="comments__time">as {{cast.character}}</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- end card content -->
+
+          <!-- similar -->
+          <div class="col-12 col-lg-12 col-xl-12">
+            <div class="row">
+              <!-- section title -->
+              <div class="col-12">
+                <h2 class="section__title section__title--sidebar">Similar Movies</h2>
+              </div>
+              <!-- end section title -->
+              <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let movie of similar | slice:0:6; let i = index;">
+                <app-movie-list [movie]="movie" [genre]="genres" type="movie"></app-movie-list>
+              </div>
+            </div>
+          </div>
+          <!-- end similar -->
+
+          <!-- recomended -->
+          <div class="col-12 col-lg-12 col-xl-12">
+            <div class="row">
+              <!-- section title -->
+              <div class="col-12">
+                <h2 class="section__title section__title--sidebar">Recomended Movies</h2>
+              </div>
+              <!-- end section title -->
+              <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let movie of recomended | slice:0:6; let i = index;">
+                <app-movie-list [movie]="movie" [genre]="genres" type="movie"></app-movie-list>
+              </div>
+            </div>
+          </div>
+          <!-- end recomended -->
+        </div>
+      </div>
+    </div>
+    <!-- end content -->
+
+  </div>
+</div>
+<!-- end details content -->

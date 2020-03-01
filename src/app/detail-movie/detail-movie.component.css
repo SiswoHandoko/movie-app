@@ -1,0 +1,21 @@
+.comments__autor{
+  margin-top:10px;
+}
+.cast{
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 2px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.buy-button{
+  font-family: 'Ubuntu', sans-serif;
+  color:#6c757d;
+  font-weight: bolder;
+}
